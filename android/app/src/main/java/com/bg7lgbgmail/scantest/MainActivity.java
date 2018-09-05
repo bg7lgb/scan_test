@@ -14,7 +14,7 @@ import io.flutter.plugins.GeneratedPluginRegistrant;
 
 public class MainActivity extends FlutterActivity {
   private static final String STREAM_CHANNEL_NAME = "bg7lgb/scan_event";
-  private static final String BROADCAST_NAME = "com.scanner.broadcast";
+  private static final String BROADCAST_NAME = "com.scanner.broadcast";  // C6000r的广播名
   private static final String BROADCAST_NAME_D8 = "ACTION_BAR_SCAN";   // 中光远防爆机扫码广播名
 
   @Override

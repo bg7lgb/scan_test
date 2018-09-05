@@ -60,10 +60,13 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: new ListView.builder(
         itemCount: items.length,
-        itemBuilder: (context, index) {
-          return ListTile(title: new Text(items[index]));
-        },
-      ),
-    );
+        itemBuilder: buildItem));
+  }
+
+  Widget buildItem(BuildContext context, int index) {
+    //if (index.isOdd) return new Divider();
+    
+    return new Padding(padding: const EdgeInsets.all(3.0),
+    child: new Text(items[index]),);
   }
 }
