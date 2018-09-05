@@ -50,8 +50,8 @@ public class MainActivity extends FlutterActivity {
       @Override
       public void onReceive(Context context, Intent intent) {
 
-         String data;
-         Log.d("abc", "receive");
+        String data;
+        // Log.d("abc", "receive");
         if (intent.getAction().equals(BROADCAST_NAME)) {
             data = intent.getStringExtra("data");
             Log.d("data", data);
