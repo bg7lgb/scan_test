@@ -60,7 +60,10 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: new ListView.builder(
         itemCount: items.length,
-        itemBuilder: buildItem));
+        itemBuilder: buildItem),
+      floatingActionButton: new FloatingActionButton(
+          onPressed: deleteAllItems,
+          child: new Icon(Icons.clear)),);
   }
 
   Widget buildItem(BuildContext context, int index) {
@@ -68,5 +71,11 @@ class _MyHomePageState extends State<MyHomePage> {
     
     return new Padding(padding: const EdgeInsets.all(3.0),
     child: new Text(items[index]),);
+  }
+
+  void deleteAllItems() {
+    setState(() {
+      items.clear();
+    });
   }
 }
