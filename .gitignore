@@ -9,4 +9,5 @@ build/
 .flutter-plugins
 
 .idea/
+
 pubspec.lock
