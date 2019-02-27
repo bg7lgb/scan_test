@@ -54,10 +54,10 @@ public class MainActivity extends FlutterActivity {
         // Log.d("abc", "receive");
         if (intent.getAction().equals(BROADCAST_NAME)) {
             data = intent.getStringExtra("data");
-            Log.d("data", data);
+//            Log.d("data", data);
         } else {
             data = intent.getStringExtra("EXTRA_SCAN_DATA");
-            Log.d("EXTRA_SCAN_DATA", data);
+//            Log.d("EXTRA_SCAN_DATA", data);
         }
         events.success(data);
       }

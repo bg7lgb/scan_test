@@ -33,6 +33,10 @@ class _MyHomePageState extends State<MyHomePage> {
   //List<String> items;
   var items = new List<String> ();
 
+  FocusNode _focusNode =  FocusNode();
+
+  DateTime _startTime, _endTime;
+
   @override
   void initState() {
     super.initState();
@@ -40,10 +44,22 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _onEvent(Object event) {
-    print(event.toString());
+    _endTime = DateTime.now();
+    if (_startTime != null){
+      var diffTime = _endTime.difference(_startTime);
+      _startTime = null;
+      print(event.toString());
     setState(() {
-      items.insert(0, event.toString());
+      items.insert(0, "${event.toString()}  ${diffTime.inMilliseconds} ms");
     });
+    } else {
+      print(event.toString());
+      setState(() {
+        items.insert(0, "${event.toString()}  ");
+      });
+    }
+
+
   }
 
   void _onError(Object error) {
@@ -68,14 +84,35 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget buildItem(BuildContext context, int index) {
     //if (index.isOdd) return new Divider();
-    
-    return new Padding(padding: const EdgeInsets.all(3.0),
-    child: new Text(items[index]),);
+    FocusScope.of(context).requestFocus(_focusNode);
+
+    return RawKeyboardListener(
+      onKey: handleKey,
+      focusNode: _focusNode,
+      child: Padding(padding: const EdgeInsets.all(3.0),
+      child: Text(items[index]),),
+    );
   }
 
   void deleteAllItems() {
     setState(() {
       items.clear();
     });
+  }
+
+  handleKey(RawKeyEvent key) {
+//   handleKey(KeyEvent key) {
+//    print("key: ${key.keyCode.toString()}");
+  final c6000 = 139;
+  final v8 = 284;
+  final d8 = 164;
+
+    print("key type: ${key.runtimeType.toString()}");
+    if (key.runtimeType.toString() == 'RawKeyDownEvent') {
+      RawKeyEventDataAndroid data = key.data as RawKeyEventDataAndroid;
+      var _keyCode = data.keyCode; //keycode of key event (66 is return)
+      print("key code: $_keyCode");
+      if (_keyCode == c6000 || _keyCode == v8 || _keyCode == d8) _startTime = DateTime.now();
+    }
   }
 }
